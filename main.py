@@ -7,7 +7,7 @@ import yt_dlp
 # Dictionary to hold transcriptions
 transcriptions = {}
 
-def download_audio(youtube_url, output_path="audio.mp3"):
+def download_audio(youtube_url, output_path="audio"):
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': output_path,
