@@ -4,6 +4,8 @@ YouTube videos with more complex sources of audio i.e., music with heavy spectra
 
 # Quick Start
 
+`pip install requirements.txt`
+
 ## Adding YouTube videos
 
 To add YouTube videos, add links to the `urls` list in `main.py`.
