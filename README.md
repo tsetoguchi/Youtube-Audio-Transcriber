@@ -13,7 +13,7 @@ To add YouTube videos, add links to the `urls` list in main.py.
 
 # Changing the quality of the transcription
 
-If the transcription is not accurate, it may help to change the model used in main.py.
+If the transcription is inaccurate, and time efficiency is a non-issue, it may help to change the `whisper` model used in main.py.
 Options include:
 `base` `small` `medium` `large`
 
