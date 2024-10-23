@@ -1,4 +1,6 @@
-To add YouTube videos, edit the 
+# Adding YouTube videos
+
+To add YouTube videos, add links to the `urls` list in main.py.
 
 ```
     urls = [
@@ -7,4 +9,14 @@ To add YouTube videos, edit the
     ]
 ```
 
-in main.py.
+
+
+# Changing the quality of the transcription
+
+If the transcription is not accurate, it may help to change the model used in main.py.
+Options include:
+`base` `small` `medium` `large`
+
+```
+    model = whisper.load_model("large")
+```
