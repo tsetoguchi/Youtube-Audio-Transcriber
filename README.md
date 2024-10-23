@@ -1,4 +1,10 @@
-# Adding YouTube videos
+## Disclaimer
+YouTube videos with more complex sources of audio i.e., music with heavy spectral content may not be accurately transcribed.
+
+
+#Quick Start
+
+## Adding YouTube videos
 
 To add YouTube videos, add links to the `urls` list in main.py.
 
@@ -11,7 +17,7 @@ To add YouTube videos, add links to the `urls` list in main.py.
 
 
 
-# Changing the quality of the transcription
+## Changing the quality of the transcription
 
 If the transcription is inaccurate, and time efficiency is a non-issue, it may help to change the `whisper` model used in main.py.
 
