@@ -14,7 +14,7 @@ def fetch_youtube_urls(page_url):
     chrome_options.add_argument("--disable-dev-shm-usage")
 
     # Set up Chrome WebDriver
-    service = Service(executable_path='C:\\Users\\tao\\.wdm\\drivers\\chromedriver\\win64\\129.0.6668.100\\chromedriver-win32\\chromedriver.exe')  # Adjust the path to your chromedriver
+    service = webdriver.ChromeService()
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     # Load the YouTube page
