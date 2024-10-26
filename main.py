@@ -4,8 +4,11 @@ import subprocess
 import whisper
 import yt_dlp
 
+from fetchurls import fetch_youtube_urls
+
 # Dictionary to hold transcriptions
 transcriptions = {}
+
 
 def download_audio(youtube_url, output_path="audio"):
     ydl_opts = {
@@ -51,9 +54,12 @@ def convert_to_wav(input_file, output_file="audio.wav"):
         return None
 
 
-def transcribe_audio(audio_file):
+def transcribe_audio(audio_file, quality):
+    quality_dict = {"1": "base", "2": "small",
+                    "3": "medium", "4": "large"}
+
     # Load the Whisper model
-    model = whisper.load_model("base")
+    model = whisper.load_model(quality_dict[quality])
     # Transcribe the audio file
     result = model.transcribe(audio_file)
     print("Transcription completed.")
@@ -72,7 +78,7 @@ def fetch_video_title(youtube_url):
         return info.get('title', 'Unknown Title')
 
 
-def process_youtube_urls(youtube_urls):
+def process_youtube_urls(youtube_urls, quality):
     for youtube_url in youtube_urls:
         audio_file = download_audio(youtube_url)
 
@@ -86,7 +92,7 @@ def process_youtube_urls(youtube_urls):
             print(f"Failed to convert audio to WAV for {youtube_url}.")
             continue
 
-        transcription = transcribe_audio(wav_file)
+        transcription = transcribe_audio(wav_file, quality)
 
         # Fetch the video title
         video_title = fetch_video_title(youtube_url)
@@ -97,7 +103,7 @@ def process_youtube_urls(youtube_urls):
         # Delete audio files after processing
         try:
             os.remove(audio_file)  # Remove the .mp3 file
-            os.remove(wav_file)     # Remove the .wav file
+            os.remove(wav_file)  # Remove the .wav file
             print(f"Deleted audio files: {audio_file} and {wav_file}")
         except Exception as e:
             print(f"Error deleting audio files: {e}")
@@ -105,14 +111,35 @@ def process_youtube_urls(youtube_urls):
     # Save all transcriptions to a single text file
     with open("transcriptions.txt", 'w', encoding='utf-8') as f:
         for title, text in transcriptions.items():
-            f.write(f"Title: {title}\n\nTranscription:\n{text}\n\n{'-'*40}\n")
+            f.write(f"Title: {title}\n\nTranscription:\n{text}\n\n{'-' * 40}\n")
     print("All transcriptions saved to transcriptions.txt")
+
+
+def channel_urls(channel_name):
+    return fetch_youtube_urls(f"https://www.youtube.com/@{channel_name}")
+
+
+def __check_quality(quality):
+    int_quality = int(quality)
+    try:
+        if int_quality < 1 or int_quality > 4:
+            raise Exception("Error: Quality must be between 1 - 4.")
+    except:
+        raise Exception("Error: An exception occurred, Quality must be a number between 1 - 4.")
+
+
+def main():
+    quality = input("Choose transcription quality 1 - 4. Lowest to highest.\n")
+    __check_quality(quality)
+    channel_name = input("Channel Name: \n")
+
+    urls = channel_urls(channel_name)
+    process_youtube_urls(urls, quality)
 
 
 if __name__ == "__main__":
     # Example list of YouTube URLs
-    urls = [
-        "https://www.youtube.com/watch?v=-klQmX6LHAo&ab_channel=AaronRamirez",
-        "https://www.youtube.com/watch?v=qqZyGm0aqh4&ab_channel=TheIronSnail"  # Add more URLs as needed
-    ]
-    process_youtube_urls(urls)
+    # urls = [
+    #     "https://www.youtube.com/watch?v=lCuP3_dMtpA&ab_channel=CookingwithDog"  # Add more URLs as needed
+    # ]
+    main()
