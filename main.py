@@ -134,6 +134,8 @@ def main():
     channel_name = input("Channel Name: \n")
 
     urls = channel_urls(channel_name)
+    if len(urls) == 0:
+        raise Exception("Error: Channel does not exist or does not have any public videos.")
     process_youtube_urls(urls, quality)
 
 
