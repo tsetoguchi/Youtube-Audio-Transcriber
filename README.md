@@ -6,4 +6,6 @@ YouTube videos with more complex sources of audio i.e., music with heavy spectra
 
 `pip install requirements.txt`
 
-Run `main.py`.
+1. Run `main.py`.
+
+2. Results will be in `transcription.txt`.
