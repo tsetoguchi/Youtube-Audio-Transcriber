@@ -2,7 +2,7 @@
 YouTube videos with more complex sources of audio i.e., music with heavy spectral content may not be accurately transcribed.
 
 
-# Quick Start
+# Quickstart
 
 `pip install requirements.txt`
 
