@@ -115,4 +115,12 @@ if __name__ == "__main__":
         "https://www.youtube.com/watch?v=-klQmX6LHAo&ab_channel=AaronRamirez",
         "https://www.youtube.com/watch?v=qqZyGm0aqh4&ab_channel=TheIronSnail"  # Add more URLs as needed
     ]
+        # record start time
+    time_start = perf_counter()
     process_youtube_urls(urls)
+    # record end time
+    time_end = perf_counter()
+    # calculate the duration
+    time_duration = time_end - time_start
+    # report the duration
+    print(f'Took {time_duration} seconds')
