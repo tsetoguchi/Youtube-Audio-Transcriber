@@ -112,8 +112,7 @@ def process_youtube_urls(youtube_urls):
 if __name__ == "__main__":
     # Example list of YouTube URLs
     urls = [
-        "https://www.youtube.com/watch?v=-klQmX6LHAo&ab_channel=AaronRamirez",
-        "https://www.youtube.com/watch?v=qqZyGm0aqh4&ab_channel=TheIronSnail"  # Add more URLs as needed
+        "https://www.youtube.com/watch?v=-klQmX6LHAo&ab_channel=AaronRamirez"
     ]
         # record start time
     time_start = perf_counter()
